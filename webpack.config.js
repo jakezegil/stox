@@ -30,9 +30,9 @@ module.exports = {
     publicPath: "http://localhost:3000/dist/",
     hotOnly: true,
     proxy: {
-      "*":{
-        target: "http://localhost:8000"
-      }
+        '/api': {
+            target: 'http://localhost:8000',
+        }
     }
   },
   plugins: [new webpack.HotModuleReplacementPlugin()]
