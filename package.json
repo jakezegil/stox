@@ -4,14 +4,29 @@
   "description": "simple app for stox",
   "main": "index.js",
   "scripts": {
+    "start": "webpack-dev-server --mode-development",
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "proxy":  {
+    "/api": {
+      "target": "http://localhost:5000"
+    }
   },
   "author": "Jake Zegil",
   "license": "ISC",
   "devDependencies": {
-    "@babel/cli": "^7.1.0",
-    "@babel/core": "^7.1.0",
-    "@babel/preset-env": "^7.1.0",
-    "@babel/preset-react": "^7.0.0"
+    "@babel/cli": "^7.4.4",
+    "@babel/core": "^7.4.5",
+    "@babel/preset-env": "^7.4.5",
+    "@babel/preset-react": "^7.0.0",
+    "axios": "^0.19.0",
+    "babel-loader": "^8.0.6",
+    "css-loader": "^1.0.1",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "style-loader": "^0.23.1",
+    "webpack": "^4.35.2",
+    "webpack-cli": "^3.3.5",
+    "webpack-dev-server": "^3.7.2"
   }
 }
