@@ -98,9 +98,9 @@ class App extends Component {
               }
               </div>
               <Route path="/register" render={(props) => <Register {...props} logIn={this.logIn}/>}/>
-              <Route exact path="/" render={(props) => props.isLoggedIn ? <Redirect to="/exchange"/> : <Login {...props} logIn={this.logIn}/> }/>
+              <Route exact path="/" render={(props) => isLoggedIn ? <Redirect to="/exchange"/> : <Login {...props} logIn={this.logIn}/> }/>
               <Route path="/sign-in" render={(props) => <Login {...props} logIn={this.logIn}/>}/>
-              <Route path="/exchange" render={(props) => this.isLoggedIn == true ? <Exchange {...props}/> : <Redirect to= '/sign-in'/>}/>
+              <Route path="/exchange" render={(props) =>  <Exchange {...props}/>}/>
     
           </div>
         </div>
