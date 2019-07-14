@@ -34,7 +34,7 @@ class Register extends Component {
         return (
             <div className="center">
                 <div className="card">
-                    <h1>Login</h1>
+                    <h1>Register</h1>
                     <form onSubmit ={this.handleFormSubmit}>
                     <header>Name</header>
                     <input

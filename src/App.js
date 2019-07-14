@@ -7,7 +7,13 @@ import Register from "./pages/register.js";
 import AuthService from './components/AuthService';
 
 const defURL = 'http://localhost:3000';
-const bigbigbig = 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImRlOTg2MTRiOTNlNjYyMDg1NTIwMDJjNThmOWZkYTM3NjAzNGY4M2JkM2U4NzliMmU5Zjc4ODlmNjc0N2FhOGM0NzY5Nzc2ODljNjdjYTFiIn0.eyJhdWQiOiIxIiwianRpIjoiZGU5ODYxNGI5M2U2NjIwODU1MjAwMmM1OGY5ZmRhMzc2MDM0ZjgzYmQzZTg3OWIyZTlmNzg4OWY2NzQ3YWE4YzQ3Njk3NzY4OWM2N2NhMWIiLCJpYXQiOjE1NjE5MjA5ODMsIm5iZiI6MTU2MTkyMDk4MywiZXhwIjoxNTkzNTQzMzgzLCJzdWIiOiIzIiwic2NvcGVzIjpbXX0.c3y_NjO5oQdF-vcB_GhHYTmg1YpuWE64_lw7gcmopAnhol2AFvOmbj_k7uVHS-A_wHkDLNWsbTkecNQzPT9PV4bSX1WAKp1gnZHbHMEH38Mduv8qlMeOLlHjZ8QAYu1b9xoC4PUo24_fAtcDtYp3UaDpNAelGMMs3PcyO0EyWpfCGKPUAj7oT4QiglaIw8wTu4o7VmXDRTsG08cjTS6RnqcdNBTc0D3vtMORbEQVdqP45pOJsqMMvC3M_zLvCokUzBm57jXTa_Wh7WUokqj2Eo3P6kA2wOzGQ_tr53SA8C_RmDRkr3gp2G9QBeQetTLoChPhJbG-QWdltnkBCQ2cAiKW-HpQCb3UV-6eimKNXqAfexdfvp1koUnlnVGrRSb2eCCqO9THRx-s7CoDooqmQpiIpV6jmy5UbuFw62Hz3Fa-J5obTiN71OuvK1HqCcLhOCDm-SJ9ofsufKJ-pVp3T0JRxef82TILh4LAbKE-cTUJRCYwjMsXKVRcoSmxiABLTlTDkFlmaXOjf6JcS6t2cDu8edoBo-TEGWYcfLI2d-WdkbFzZODY9rmqjXcMAAZB6UnHCBIBqG3WDQt932Lul1t2jhdUoYXg1z0tijcFP_T40rx3GS8DdWp0HC36vtUWOgV9idxYz7dS_Zsm4jqQX5GNn6l4lrSzt9QpBDa-7QM;'
+const PrivateRoute = ({ component: Component, ...rest }) => (
+  <Route {...rest} render={(props) => (
+    fakeAuth.isAuthenticated === true
+      ? <Component {...props} />
+      : <Redirect to='/login' />
+  )} />
+)
 
 const instance = axios.create({
   headers: {
@@ -39,6 +45,9 @@ class App extends Component {
     .then(res => {
       this.setState({user: res.data.user,
       isLoggedIn: true})
+    }).catch(err=>{
+      console.log(err);
+      this.setState({isLoggedIn: false});
     })
    
   }
@@ -66,6 +75,7 @@ class App extends Component {
   }
 
   render(){
+    const isLoggedIn = this.state.isLoggedIn;
 
     return (
       <Router basename="/">
@@ -87,9 +97,10 @@ class App extends Component {
               </div>
               }
               </div>
-              <Route exact path="/register" render={(props) => <Register {...props} logIn={this.logIn}/>}/>
+              <Route path="/register" render={(props) => <Register {...props} logIn={this.logIn}/>}/>
+              <Route exact path="/" render={(props) => props.isLoggedIn ? <Redirect to="/exchange"/> : <Login {...props} logIn={this.logIn}/> }/>
               <Route path="/sign-in" render={(props) => <Login {...props} logIn={this.logIn}/>}/>
-              <Route path="/exchange" render={(props) => <Exchange {...props}/>}/>
+              <Route path="/exchange" render={(props) => this.isLoggedIn == true ? <Exchange {...props}/> : <Redirect to= '/sign-in'/>}/>
     
           </div>
         </div>
