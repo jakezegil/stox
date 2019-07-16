@@ -25,11 +25,13 @@ class Login extends Component {
     }
 
     componentWillMount(){
+        
         if(this.Auth.loggedIn()){
             this.props.logIn();
             this.props.history.replace('/');
         }
     }
+
 
     render() {
         return (
@@ -68,7 +70,7 @@ class Login extends Component {
                 [e.target.name]: e.target.value
             }
         )
-    }
-}
+    } 
+} 
 
 export default Login;

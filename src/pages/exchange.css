@@ -1,0 +1,36 @@
+.grid{
+    margin: 5%;
+    display: flex;
+    flex-flow: row;
+    flex-wrap: wrap;
+}
+
+.stockbox-box {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.6s;
+    width: 30%;
+    height: 150px;
+    background-color: white;
+    margin: 5px 5px 5px 5px;
+    border-radius: 10px;
+    cursor: pointer;
+    transform-style: preserve-3d;
+  }
+
+  .PageSwitcher {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 10%;
+  }
+  
+  .PageSwitcher__Item {
+    background-color: #4C5D72;
+    color: #9DA6B1;
+    padding: 10px 25px;
+    cursor: pointer;
+    font-size: .9em;
+    border: none;
+    outline: none;
+    display: inline-block;
+    text-decoration: none;
+  }

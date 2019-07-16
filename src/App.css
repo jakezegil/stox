@@ -3,4 +3,22 @@
     margin: 1rem;
     font-family: Arial, Helvetica, sans-serif;
   }
+
+  .PageSwitcher {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 10%;
+  }
+  
+  .PageSwitcher__Item {
+    background-color: #4C5D72;
+    color: #9DA6B1;
+    padding: 10px 25px;
+    cursor: pointer;
+    font-size: .9em;
+    border: none;
+    outline: none;
+    display: inline-block;
+    text-decoration: none;
+  }
   
